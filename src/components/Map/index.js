@@ -1,14 +1,17 @@
 import React, { useRef, useState, useEffect } from 'react';
 import * as ol from 'ol';
+import Paper from '@mui/material/Paper';
 import styled from 'styled-components';
 import { MapContext } from './map.context';
 import { fromLonLat } from 'ol/proj';
 import { layers } from '../../configs/layers';
 
-const MapContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background-color: grey;
+const MapPane = styled.div`
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-color: navajowhite;
+  z-index: 1;
 `;
 
 const Map = ({
@@ -42,9 +45,9 @@ const Map = ({
 
   return (
     <MapContext.Provider value={{ map }}>
-      <div ref={mapRef} className="ol-map">
+      <MapPane ref={mapRef} className="ol-map">
         {children}
-      </div>
+      </MapPane>
     </MapContext.Provider>
   );
 };

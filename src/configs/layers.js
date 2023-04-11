@@ -17,6 +17,7 @@ const layers = [
   }),
   new TileLayer({
     title: 'Railway tracks',
+    type: 'something else',
     visible: false,
     source: new TileWMS({
       url: 'http://maps.geogratis.gc.ca/wms/railway_en',
