@@ -3,7 +3,7 @@ import TileLayer from 'ol/layer/Tile';
 import ImageWMS from 'ol/source/ImageWMS';
 import TileWMS from 'ol/source/TileWMS';
 
-const layers = [
+const base = [
   new ImageLayer({
     //extent: [-13884991, 2870341, -7455066, 6338219],
     title: 'Transport basemap',
@@ -15,9 +15,12 @@ const layers = [
       mapServer: 'geoserver'
     }),
   }),
+];  
+  
+const railway = [
   new TileLayer({
     title: 'Railway tracks',
-    type: 'something else',
+    type: 'railway',
     visible: false,
     source: new TileWMS({
       url: 'http://maps.geogratis.gc.ca/wms/railway_en',
@@ -30,6 +33,7 @@ const layers = [
   }),
   new TileLayer({
     title: 'Railway stations',
+    type: 'railway',
     visible: false,
     source: new TileWMS({
       url: 'http://maps.geogratis.gc.ca/wms/railway_en',
@@ -42,6 +46,7 @@ const layers = [
   }),
   new TileLayer({
     title: 'Railway crossings',
+    type: 'railway',
     visible: false,
     source: new TileWMS({
       url: 'http://maps.geogratis.gc.ca/wms/railway_en',
@@ -54,4 +59,13 @@ const layers = [
   }),
 ];
 
-export { layers };
+const layers = [
+  ...base,
+  ...railway
+];
+
+export {
+  base,
+  railway,
+  layers 
+};

@@ -1,4 +1,8 @@
-import React, { useEffect, useState} from 'react';
+import React, {
+  useEffect,
+  useState,
+  useMemo,
+} from 'react';
 import {
   Paper,
   IconButton,
@@ -10,26 +14,15 @@ import {
 } from '@mui/material';
 import LayersIcon from '@mui/icons-material/Layers';
 // import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { layers } from '../../configs/layers';
+import ControlItem from './ControlItem';
+import { groups } from '../../configs/groups';
 import { useMapContext } from '../Map/map.context';
 
 const LayerController = () => {
   const [collapsed, setCollapsed] = useState(true);
-  const context = useMapContext();
+  // const { olMap } = useMapContext();
 
-  console.log(context.map?.getLayers());
-
-  useEffect(() => {
-    if (context.map === null) {
-      console.log('map is null');
-      return;
-    }
-    const layerList = context.map.getLayers();
-    const layerGroups = context.map.getLayerGroup();
-    layerList.forEach(layerObj => console.log(layerObj.getProperties()));
-    //console.log(layerList.getProperties());
-  }, [context]);
-
+  console.log('groups: ', groups);
   return (
     <Paper
       onMouseEnter={() => setCollapsed(false)}
@@ -44,27 +37,23 @@ const LayerController = () => {
         zIndex: 2,
       }}
     >
-      {/*collapsed ? (
+      {collapsed ? (
         <IconButton>
           <LayersIcon />
         </IconButton>
-      ) : (
-        <Accordion>
+      ) : groups.map((groupObj, index) => (
+        <Accordion key={index}>
           <AccordionSummary>
-            <Typography>Base layers</Typography>
+            <Typography>{groupObj.title}</Typography>
           </AccordionSummary>
-          <AccordionDetails>
-            <Typography>Transport with labels</Typography>
-          </AccordionDetails>
-          <AccordionDetails>
-            <Typography>Transport w/o labels</Typography>
-          </AccordionDetails>
+          {groupObj.layers.map(layerObj => (
+            <ControlItem
+              control={groupObj.control}
+              {...layerObj}
+            />
+          ))}
         </Accordion>
-      )*/}
-      {context.map === null ? <CircularProgress />
-        : (
-          <div>Loaded</div>
-        )}
+      ))}
     </Paper>
   );
 };

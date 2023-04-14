@@ -44,7 +44,7 @@ const Map = ({
   }, []);
 
   return (
-    <MapContext.Provider value={{ map }}>
+    <MapContext.Provider value={{ olMap: map }}>
       <MapPane ref={mapRef} className="ol-map">
         {children}
       </MapPane>
