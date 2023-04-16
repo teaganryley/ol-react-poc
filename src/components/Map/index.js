@@ -1,14 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
 import * as ol from 'ol';
-import Paper from '@mui/material/Paper';
 import styled from 'styled-components';
 import { MapContext } from './map.context';
 import { fromLonLat } from 'ol/proj';
 import { layers } from '../../configs/layers';
 
 const MapPane = styled.div`
-  height: 100%;
-  width: 100%;
+  height: 80%;
+  width: 80%;
   position: relative;
   background-color: navajowhite;
   z-index: 1;
@@ -16,9 +15,10 @@ const MapPane = styled.div`
 
 const Map = ({
   children,
-  zoom,
   center,
-  projection
+  extent,
+  projection,
+  zoom,
 }) => {
   const mapRef = useRef();
   const [map, setMap] = useState(null);
@@ -27,9 +27,11 @@ const Map = ({
   useEffect(()=> {
     const options = {
       view: new ol.View({
-        zoom,
+        projection: projection,
         center: fromLonLat(center, projection),
-        projection
+        extent,
+        zoom,
+        minZoom: 2
       }),
       layers: layers,
       controls: [],

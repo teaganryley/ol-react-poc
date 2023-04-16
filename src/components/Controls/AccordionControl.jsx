@@ -2,9 +2,12 @@ import {
   Typography,
   Accordion,
   AccordionSummary,
+  AccordionDetails,
+  FormControl,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ControlItem from './ControlItem';
+import RadioList from './RadioList';
+import CheckList from './CheckList';
 import { groups as layerGroups } from '../../configs/groups';
 
 const AccordionControl = () => (
@@ -18,12 +21,15 @@ const AccordionControl = () => (
             {groupObj.title}
           </Typography>
         </AccordionSummary>
-        {groupObj.layers.map(layerObj => (
-          <ControlItem 
-            control={groupObj.control}
-            {...layerObj}
-          />
-        ))}
+        <AccordionDetails>
+          <FormControl>
+            {groupObj.control === 'radio' ? (
+              <RadioList layerList={groupObj.layers}/>
+            ) : (
+              <CheckList layerList={groupObj.layers}/>
+            )}
+          </FormControl>
+        </AccordionDetails>     
       </Accordion>
     ))}
   </>

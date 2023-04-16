@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import {
-  AccordionDetails,
   Checkbox,
   FormControlLabel
 } from '@mui/material';
 
-const ControlItem = ({
-  control,
+const CheckItem = ({
   layer,
   title,
   visible,
@@ -20,18 +18,16 @@ const ControlItem = ({
   };
 
   return (
-    <AccordionDetails>
-      <FormControlLabel
-        label={title}
-        control={
-          <Checkbox 
-            checked={checked}
-            onChange={handleClick}
-          />
-        }
-      />
-    </AccordionDetails>
+    <FormControlLabel
+      label={title}
+      control={
+        <Checkbox 
+          checked={checked}
+          onChange={handleClick}
+        />
+      }
+    />
   );
 };
 
-export default ControlItem;
+export default CheckItem;
