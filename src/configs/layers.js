@@ -5,10 +5,12 @@ import ImageWMS from 'ol/source/ImageWMS';
 import TileWMS from 'ol/source/TileWMS';
 
 const base = [
-  /*new ImageLayer({
+  /*
+  new ImageLayer({
     //extent: [-13884991, 2870341, -7455066, 6338219],
     title: 'Transport basemap',
     type: 'base',
+    visible: false,
     source: new ImageWMS({
       url: 'http://geogratis.gc.ca/maps/CBMT',
       params: {'LAYERS': 'CBMT'},
@@ -19,6 +21,7 @@ const base = [
   new TileLayer({
     title: 'Transport basemap',
     type: 'base',
+    visible: true,
     source: new TileWMS({
       url: 'https://maps-cartes.services.geo.ca/server2_serveur2/services/BaseMaps/CBMT3978/MapServer/WMSServer',
       params: {
