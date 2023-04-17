@@ -3,8 +3,8 @@ import RadioItem from './RadioItem';
 
 const RadioList = ({ layerList }) => (
   <RadioGroup>
-    {layerList.map(layerObj => (
-      <RadioItem {...layerObj} />
+    {layerList.map((layerObj, index )=> (
+      <RadioItem key={index} {...layerObj} />
     ))}
   </RadioGroup>
 );

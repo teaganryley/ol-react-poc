@@ -2,6 +2,8 @@ import Box from '@mui/material/Box';
 import Map from './components/Map';
 import { projection, extent } from './projections/EPSG3978';
 import LayerController from './components/Controls/LayerController';
+import Zoom from './components/Controls/Zoom';
+import AccordionControl from './components/Controls/AccordionControl';
 
 function App() {
   return (
@@ -23,7 +25,9 @@ function App() {
         projection={projection}
         zoom={3}
       >
-        <LayerController />  
+        <LayerController />
+        {/*<AccordionControl /> */}
+        <Zoom />  
       </Map>
     </Box>
   );

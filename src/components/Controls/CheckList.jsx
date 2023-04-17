@@ -3,8 +3,8 @@ import CheckItem from './CheckItem';
 
 const CheckList = ({ layerList }) => (
   <FormGroup>
-    {layerList.map(layerObj => (
-      <CheckItem {...layerObj} />
+    {layerList.map((layerObj, index) => (
+      <CheckItem key={index} {...layerObj} />
     ))}
   </FormGroup>
 );
